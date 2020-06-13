@@ -8,7 +8,8 @@
     operation SampleQuantumRandomNumberGenerator() : Result {
         using (q = Qubit())  {  // Allocate a qubit.
             H(q);               // Put the qubit to superposition. It now has a 50% chance of being 0 or 1.
-            return MResetZ(q);  // Measure the qubit value.
+            return MResetZ(q);  // Measure the qubit value with M intrinsic operation. 
+                                // Then deallocate the qubit by resetting it to zero.
         }
     }
 
@@ -25,7 +26,7 @@
     
     @EntryPoint()
     operation SampleRandomNumber() : Int {
-        let max = 50;
+        let max = 100;
         Message($"Sampling a random number between 0 and {max}: ");
         return SampleRandomNumberInRange(max);
     }
